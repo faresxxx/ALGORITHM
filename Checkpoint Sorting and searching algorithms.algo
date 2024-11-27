@@ -4,56 +4,18 @@ VAR
     i, j, key : INTEGER;
 
 BEGIN
-    // Iterate through the array starting from the second element
     FOR i := 1 TO LENGTH(arr) - 1 DO
-        key := arr[i];   // Pick the current element as the key
-        j := i - 1;      // Set j to point to the last sorted element
+        key := arr[i];   
+        j := i - 1;      
 
-        // Shift elements of arr[0..i-1] that are greater than the key
         WHILE (j >= 0 AND arr[j] > key) DO
             arr[j + 1] := arr[j];
             j := j - 1;
         END_WHILE
 
-        // Place the key in its correct position
         arr[j + 1] := key;
     END_FOR
 
-    // Display the sorted array
-    PRINT "Sorted array: ", arr;
-
+    PRINT "Sorted array: ", arr
 END
-
-// Explanation of the Function
-
-    Variables:
-        i: Index for the current element being sorted.
-        j: Tracks the position in the sorted portion of the array.
-        key: The element to be inserted into the sorted part of the array.
-
-    Logic:
-        Iterate through the array starting from the second element (i = 1), assuming the first element is already sorted.
-        Set the key to the current element and compare it with the elements in the sorted part of the array.
-        Shift all elements greater than key one position to the right to make space for the key.
-        Insert the key into its correct position.
-        Repeat until the entire array is sorted.
-
-    Output:
-        The function modifies the input array in-place and prints the sorted array.
-
-// Example Walkthrough
-
-Input Array:
-arr = [5, 3, 8, 6, 2]
-
-Sorting Steps:
-
-    Key = 3, shift 5 → Result: [3, 5, 8, 6, 2]
-    Key = 8, no shift → Result: [3, 5, 8, 6, 2]
-    Key = 6, shift 8 → Result: [3, 5, 6, 8, 2]
-    Key = 2, shift 3, 5, 6, 8 → Result: [2, 3, 5, 6, 8]
-
-Output:
-
-Sorted array: [2, 3, 5, 6, 8]
 
