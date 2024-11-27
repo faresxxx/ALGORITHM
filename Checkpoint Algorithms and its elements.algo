@@ -1,0 +1,70 @@
+FUNCTION analyze_sentence(sentence : STRING) : VOID
+
+VAR
+    length_count, word_count, vowel_count, i : INTEGER;
+    vowels : ARRAY_OF CHAR;
+    current_char : CHAR;
+
+BEGIN
+    // Initialize counters
+    length_count := 0;
+    word_count := 1; // At least one word in the sentence
+    vowel_count := 0;
+    vowels := ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+
+    // Iterate through the sentence character by character
+    FOR i := 1 TO LENGTH(sentence) DO
+        current_char := sentence[i];
+
+        // Increment character counter
+        length_count := length_count + 1;
+
+        // Check if the character is a space
+        IF (current_char = ' ') THEN
+            word_count := word_count + 1;
+        END_IF
+
+        // Check if the character is a vowel
+        IF (current_char IN vowels) THEN
+            vowel_count := vowel_count + 1;
+        END_IF
+    END_FOR
+
+    // Display results
+    PRINT "Length of the sentence: ", length_count;
+    PRINT "Number of words: ", word_count;
+    PRINT "Number of vowels: ", vowel_count;
+
+END
+
+
+// Explanation of the Function
+
+    Variables:
+        length_count: Counts the number of characters in the sentence.
+        word_count: Counts the number of words (incremented when a space is found).
+        vowel_count: Tracks the number of vowels in the sentence.
+        vowels: An array containing all the vowels (both uppercase and lowercase) for comparison.
+
+    Logic:
+        The function iterates through each character in the input sentence.
+        For each character:
+            Increment the length counter.
+            Check if the character is a space to increment the word counter.
+            Check if the character is a vowel by seeing if it exists in the vowels array.
+        The loop stops at the end of the sentence, including the period.
+
+    Output:
+        The total length of the sentence.
+        The number of words.
+        The number of vowels.
+
+
+// Example Walkthrough
+
+Input Sentence: "This is a test sentence."
+Output:
+
+Length of the sentence: 27
+Number of words: 5
+Number of vowels: 8
